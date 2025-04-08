@@ -21,7 +21,24 @@
         <h2 id="height">Height: <span></span></h2>
     </div>
     <script>
-        // Suerte !
+        const buttonGetCat = document.getElementById("get-cat");
+        const catImage = document.getElementById('cat-image');
+        const displayWidth = document.querySelector("#width span");
+        const displayHeight = document.querySelector('#height span');
+
+
+buttonGetCat.addEventListener("click", async function(){
+    const response = await fetch("https://api.thecatapi.com/v1/images/search");
+    const data = await response.json();
+    console.log(response);
+
+    catImage.src = data[0].url
+    displayWidth.textContent = data[0].width;
+    displayHeight.textContent = data[0].height;
+});
+
+
+
     </script>
 </body>
 
