@@ -20,23 +20,39 @@
         <h2 id="width">Width: <span></span></h2>
         <h2 id="height">Height: <span></span></h2>
     </div>
+    <div class="container">
+        <form action="#">
+            <label for="pets">Escoge una mascota:</label>
+            <select name="pets" id="pets">
+                <option value="api.thecatapi.com">Gatos</option>
+                <option value="api.thedogapi.com">Perros</option>
+            </select>
+        </form>
+    </div>
     <script>
         const buttonGetCat = document.getElementById("get-cat");
         const catImage = document.getElementById('cat-image');
         const displayWidth = document.querySelector("#width span");
         const displayHeight = document.querySelector('#height span');
+        const petSelected = document.querySelector("#pets");
 
+        buttonGetCat.addEventListener("click", async function () {
+            const response = await fetch(`https://${petSelected.value}/v1/images/search`);
+            console.log(petSelected.textContent);
+            const data = await response.json();
+        
+            catImage.src = data[0].url
+            displayWidth.textContent = data[0].width;
+            displayHeight.textContent = data[0].height;
+        });
 
-buttonGetCat.addEventListener("click", async function(){
-    const response = await fetch("https://api.thecatapi.com/v1/images/search");
-    const data = await response.json();
-    console.log(response);
-
-    catImage.src = data[0].url
-    displayWidth.textContent = data[0].width;
-    displayHeight.textContent = data[0].height;
-});
-
+        petSelected.addEventListener("change", ()=>{
+            if (petSelected.value === 'api.thecatapi.com') {
+                buttonGetCat.textContent = 'Nuevo Gato';
+            } else if (petSelected.value === 'api.thedogapi.com') {
+                buttonGetCat.textContent = 'Nuevo Perro';
+            }
+        })
 
 
     </script>
