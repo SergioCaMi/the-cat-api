@@ -13,7 +13,7 @@ Hay una imagen vacía y el alt es "un gato".
 2. ¿Cuál es la URL que nos va a proporcionar un gato aleatório?
 https://api.thecatapi.com/v1/images/search
 3. Describe con exactitud el tipo de dato que devuelve esta API
-describe un JSON con un objeto.
+describe un JSON con un array de objetos.
 ## Ejercicio y evaluación
 
 1. Asocio correctamente el evento clic al botón - **1 pt.**
